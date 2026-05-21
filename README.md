@@ -9,4 +9,4 @@
 | # | 과제 | 설명 |
 |---|------|------|
 | 01 | [CLI 프로그램](./01_CLI_program) | 학습 노트 검색 CLI 도구 |
-| 02 | [커뮤니티 백엔드](./02_FastAPI) | FastAPI 커뮤니티 서비스 REST API |
+| 02 | [FastAPI](./02_FastAPI) | FastAPI 커뮤니티 서비스 REST API |
