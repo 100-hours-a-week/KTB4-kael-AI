@@ -1,92 +1,93 @@
-# 커뮤니티 서비스 백엔드 API
+# 02_FastAPI — 커뮤니티 서비스 백엔드
 
-FastAPI를 사용해 커뮤니티 서비스의 백엔드 REST API를 구현한 과제입니다.
+FastAPI로 커뮤니티 서비스 REST API를 구현하는 과제입니다.
+동일한 기능을 세 가지 방식으로 단계별로 구현합니다.
 
 ---
 
-## 기능
+## 버전 구성
 
-| 기능 | 메서드 | URL |
-|------|--------|-----|
-| 회원가입 | POST | /users |
-| 로그인 | POST | /users/login |
-| 게시글 목록 | GET | /posts |
-| 게시글 작성 | POST | /posts |
-| 게시글 조회 | GET | /posts/{post_id} |
-| 댓글 작성 | POST | /posts/{post_id}/comments |
-| 좋아요 | POST | /posts/{post_id}/likes |
+| 폴더 | 데이터 저장 방식 | 상태 |
+|------|----------------|------|
+| `code_vanila/` | Python 리스트 (메모리) | ✅ 완료 |
+| `code_DB/` | SQLite / SQLAlchemy | 🔜 예정 |
+| `code_AI/` | DB + AI 기능 추가 | 🔜 예정 |
+
+---
+
+## 공통 기능
+
+- 회원가입 / 로그인
+- 게시글 CRUD
+- 댓글 작성 / 삭제
+- 좋아요 추가 / 취소
+- 프론트엔드 (`index.html`) — 브라우저에서 직접 테스트 가능
 
 ---
 
 ## 실행 방법
 
+각 버전의 폴더 안에서 실행합니다.
+
 ```bash
-cd code
-python3 -m venv .venv
+cd code_vanila        # 또는 code_DB, code_AI
 source .venv/bin/activate
-pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-API 문서: `http://localhost:8000/docs`
+- 프론트엔드: `http://localhost:8000`
+- API 문서: `http://localhost:8000/docs`
 
 ---
 
-## 파일 구조
+## 폴더 구조
 
 ```
 02_FastAPI/
-├── code/
+├── index.html                    # 공통 프론트엔드
+├── requirements.txt              # 공통 패키지 목록 (vanila 기준)
+├── README.md
+│
+├── code_vanila/                  # v1: 메모리 기반
 │   ├── main.py
 │   ├── routers/
-│   │   ├── user_router.py
-│   │   ├── post_router.py
-│   │   ├── comment_router.py
-│   │   └── like_router.py
 │   ├── controllers/
-│   │   ├── user_controller.py
-│   │   ├── post_controller.py
-│   │   ├── comment_controller.py
-│   │   └── like_controller.py
 │   └── models/
-│       ├── user_model.py
-│       ├── post_model.py
-│       ├── comment_model.py
-│       └── like_model.py
-└── FastAPI_구현_정리_note/
-    ├── 01_FastAPI_시작하기.md
-    └── 02_컨트롤러_확장하기.md
+│
+├── code_DB/                      # v2: DB 연동 (예정)
+│   ├── main.py
+│   ├── routers/
+│   ├── controllers/
+│   ├── models/
+│   └── database.py               # DB 연결 설정
+│
+└── code_AI/                      # v3: AI 기능 추가 (예정)
+    ├── main.py
+    ├── routers/
+    ├── controllers/
+    ├── models/
+    └── ai/                       # AI 관련 모듈
 ```
 
 ---
 
-## 설계 이유
+## 설계 원칙
 
-### Route-Controller-Model 패턴 선택
-역할별로 파일을 분리해 각 계층이 하나의 책임만 갖도록 설계했습니다.
-- `routers/` — URL 연결만 담당
-- `controllers/` — 비즈니스 로직 담당 (유효성 검사, 조건 처리)
-- `models/` — 데이터 저장/조회 담당
+모든 버전에서 **Route-Controller-Model** 패턴을 사용합니다.
 
-기능이 추가될 때 관련 파일만 수정하면 되어 유지보수가 쉽습니다.
+```
+요청 → Router → Controller → Model → 응답
+```
 
-### DB 없이 메모리(리스트)로 구현
-현재는 서버 재시작 시 데이터가 초기화되는 구조입니다.
-추후 SQLite 또는 PostgreSQL 연동 시 `models/` 만 수정하면 됩니다.
+- `routers/` : URL과 함수 연결
+- `controllers/` : 비즈니스 로직
+- `models/` : 데이터 접근 (버전마다 구현 방식이 달라지는 부분)
 
----
-
-## 앞으로 추가할 기능
-
-- [ ] 게시글 수정 / 삭제
-- [ ] 댓글 수정 / 삭제
-- [ ] 데이터베이스 연동
+버전이 올라갈수록 `models/`만 바뀌고 `routers/`, `controllers/`는 최대한 유지합니다.
 
 ---
 
-## 회고
+## 학습 노트
 
-<details>
-<summary>과제 회고</summary>
-
-</details>
+- [01_FastAPI_시작하기](./FastAPI_구현_정리_note/01_FastAPI_시작하기.md)
+- [02_컨트롤러_확장하기](./FastAPI_구현_정리_note/02_컨트롤러_확장하기.md)
