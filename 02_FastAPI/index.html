@@ -276,7 +276,7 @@
     list.innerHTML = data.data.map(post => `
       <div class="post-item" onclick="showDetail(${post.id})">
         <h3>${post.title}</h3>
-        <p class="post-meta">조회수 ${post.views} · 좋아요 ${post.like_count ?? 0}</p>
+        <p class="post-meta">${post.author ?? ''} · 조회수 ${post.views} · 좋아요 ${post.like_count ?? 0}</p>
       </div>
     `).join('');
   }
@@ -312,7 +312,7 @@
 
     document.getElementById('detail-title').textContent = post.title;
     document.getElementById('detail-content').textContent = post.content;
-    document.getElementById('detail-meta').textContent = `조회수 ${post.views}`;
+    document.getElementById('detail-meta').textContent = `${post.author ?? ''} · 조회수 ${post.views}`;
     document.getElementById('comment-content').value = '';
     document.getElementById('comment-status').textContent = '';
 
