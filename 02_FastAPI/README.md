@@ -9,7 +9,7 @@ FastAPI로 커뮤니티 서비스 REST API를 구현하는 과제입니다.
 
 | 폴더 | 데이터 저장 방식 | 특징 | 상태 |
 |------|----------------|------|------|
-| `code_vanila/` | Python 리스트 (메모리) | Route-Controller-Model 패턴 학습 | ✅ 완료 |
+| `code_vanilla/` | Python 리스트 (메모리) | Route-Controller-Model 패턴 학습 | ✅ 완료 |
 | `code_DB/` | SQLite + SQLModel | 데이터 영구 저장, 작성자 표시 | ✅ 완료 |
 | `code_AI/` | SQLite + SQLModel + Ollama | 게시글/댓글 AI 요약 기능 추가 | ✅ 완료 |
 
@@ -30,7 +30,7 @@ FastAPI로 커뮤니티 서비스 REST API를 구현하는 과제입니다.
 각 버전의 폴더 안에서 실행합니다.
 
 ```bash
-cd code_vanila        # 또는 code_DB, code_AI
+cd code_vanilla        # 또는 code_DB, code_AI
 source .venv/bin/activate
 uvicorn main:app --reload
 ```
@@ -49,7 +49,7 @@ uvicorn main:app --reload
 ├── index.html                    # 공통 프론트엔드
 ├── README.md
 │
-├── code_vanila/                  # v1: 메모리 기반
+├── code_vanilla/                  # v1: 메모리 기반
 │   ├── main.py
 │   ├── routers/
 │   ├── controllers/
@@ -93,7 +93,7 @@ uvicorn main:app --reload
 ## 회고
 
 <details>
-<summary>code_vanila — Route-Controller-Model 패턴 구현</summary>
+<summary>code_vanilla — Route-Controller-Model 패턴 구현</summary>
 
 ### 잘 된 것
 - Router → Controller → Model 3계층으로 역할을 분리해서, 각 파일이 하는 일이 명확해졌다.
