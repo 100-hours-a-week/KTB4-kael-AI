@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KoGPT2 챗봇</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>🤖 KoGPT2 챗봇</h1>
+      <p class="subtitle">문장을 입력하면 다음 단어를 예측해 문장을 완성합니다</p>
+    </header>
+
+    <main id="chat" class="chat">
+      <div class="msg bot">
+        <div class="bubble">안녕하세요! 이어쓰고 싶은 문장을 입력해 보세요. 예) <em>오늘 날씨가</em></div>
+      </div>
+    </main>
+
+    <section class="controls">
+      <label>
+        다양성(temperature): <span id="tempVal">0.8</span>
+        <input type="range" id="temperature" min="0.1" max="1.5" step="0.1" value="0.8" />
+      </label>
+      <label>
+        최대 길이: <span id="lenVal">20</span>
+        <input type="range" id="maxLen" min="3" max="100" step="1" value="20" />
+      </label>
+    </section>
+
+    <form id="form" class="input-bar">
+      <input id="input" type="text" placeholder="문장을 입력하세요..." autocomplete="off" />
+      <button id="send" type="submit">전송</button>
+    </form>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
